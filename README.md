@@ -11,3 +11,9 @@ We have now implemented a simple ruby class which is used to output data
 to the browser console. We have also included an auto rebuild using rerun.
 Use `./build` to initiate the build process and open index.html in your
 browser again and view the console.
+
+3. Simple Menu
+
+Using the opal-jquery gem we're now demonstrating interaction with elements
+on the page using Document and Element classes. We added two new gems to the
+Gemfile so dont forget to run bundler!

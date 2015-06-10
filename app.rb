@@ -1,20 +1,12 @@
-require "opal"
+require 'opal'
+require 'opal-jquery'
 
-class Person
-  attr_accessor :name, :age
-  def initialize
-    yield self
-  end
-  def speak
-    "Hi, I am #{name} and I'm #{age} years old"
-  end
-end
+$current_target = nil
 
-
-1...10.times do |i|
-  c = Person.new do |p|
-    p.name = "Person#{i}"
-    p.age = i
+Document.ready? do
+  Element.find('#menu li').on :click do |evt|
+    $current_target.remove_class 'blue' unless $current_target.nil?
+    evt.current_target.add_class 'blue'
+    $current_target = evt.current_target
   end
-  puts "Wow, running in the browser opal! #{c.speak}"
 end
