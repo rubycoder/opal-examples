@@ -17,3 +17,8 @@ browser again and view the console.
 Using the opal-jquery gem we're now demonstrating interaction with elements
 on the page using Document and Element classes. We added two new gems to the
 Gemfile so dont forget to run bundler!
+
+4. Method based Event Handling Ruby Style
+
+With Opal, you can avoid writing anonymous callback functions entirely and
+just use standard object methods. Here's an example of how to do it.

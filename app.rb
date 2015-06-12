@@ -1,16 +1,25 @@
 require 'opal'
 require 'opal-jquery'
 
-$current_target = nil
+module EventHandler
+  def handle(event_type, selector, method_sym)
+    Element[selector].on(event_type) {|event| send(method_sym, event) }
+  end
+end
+
+class MyWidget
+  include EventHandler
+
+  def initialize
+    @widget_type = "div tag"
+    handle :click, '#clickme', :somemethod
+  end
+
+  def somemethod(event)
+    event.current_target.html = "Clicked the #{@widget_type}!"
+  end
+end
 
 Document.ready? do
-  menu = Element.find '#menu'
-  ['One','Two','Three'].each do |item_name|
-    menu.append "<li>#{item_name}</li>"
-  end
-  Element.find('#menu li').on :click do |evt|
-    $current_target.remove_class 'blue' unless $current_target.nil?
-    evt.current_target.add_class 'blue'
-    $current_target = evt.current_target
-  end
+  my_widget = MyWidget.new
 end
