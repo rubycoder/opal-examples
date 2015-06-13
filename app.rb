@@ -1,22 +1,28 @@
 require 'opal'
 require 'opal-jquery'
 
-module EventHandler
-  def handle(event_type, selector, method_sym)
-    Element[selector].on(event_type) {|event| send(method_sym, event) }
-  end
-end
-
 class MyWidget
-  include EventHandler
 
   def initialize
-    @widget_type = "div tag"
-    handle :click, '#clickme', :somemethod
+    HTTP.get('/some/json').then do |response|
+      process_json_data(response.json)
+    end.fail do |response|
+      handle_error(response.json[:error])
+    end.always do
+      hide_spinner!
+    end
   end
 
-  def somemethod(event)
-    event.current_target.html = "Clicked the #{@widget_type}!"
+  def process_json_data(json)
+
+  end
+
+  def handle_error(json)
+
+  end
+
+  def hide_spinner
+
   end
 end
 
