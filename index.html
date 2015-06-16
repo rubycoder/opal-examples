@@ -3,12 +3,22 @@
   <head>
     <script src="jquery.js"></script>
     <script src="app.js"></script>
+    <style>
+      body {
+        margin: 10;
+        padding: 10;
+      }
+      canvas {
+        position: absolute;
+        width: 90%;
+        height: 90%;
+        overflow: hidden
+      }
+    </style>
   </head>
   <body>
-    <div id="spinner" style="display:flex;justify-content:center;align-items:center;">
-      <div>
-        <img src="https://i0.wp.com/cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif" style="max-width:100%;" width="64" height="64" srcset="https://i0.wp.com/cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif?zoom=2 2x" scale="2">
-      </div>
-    </div>
+    <canvas id="myCanvas" style="border:1px solid #c3c3c3;">
+      Your browser does not support the HTML5 canvas tag.
+    </canvas>
   </body>
 </html>

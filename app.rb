@@ -1,51 +1,37 @@
 require 'opal'
 require 'opal-jquery'
+require 'native'
 
 class MyWidget
 
-  @comments
-
   def initialize
-    @comments = []
-    HTTP.get('http://www.reddit.com/user/brain_poop/comments/.json').then do |response|
-      process_json_data(response.json)
-    end.fail do |response|
-      handle_error(response.json[:error])
-    end.always do
-      hide_spinner!
-    end
+
+    @canvas = Element.find('#myCanvas').get(0)
+    @ctx  = Native(`this.canvas.getContext('2d')`)
+    @ctx.fillStyle='red'
+    @ctx.fillRect(10,10,50,50)
+
+    # game = Document.body #.querySelector('#game')
+    # #
+    # canvas = Document.createElement('canvas')
+    # game.appendChild canvas
+    # native_canvas = Native.new(canvas) #.to_n
+    # native_canvas.width = Document.width
+    # native_canvas.height = Document.height
+    #
+    # context = Native.new(canvas.getContext('2d')) #.to_n
+    # context.beginPath
+    # context.arc(200, 200, 70, 0, 2 * `Math.PI`, false)
+    # context.fillStyle = '#65ACC2'
+    # context.fill
+    # context.lineWidth = 6
+    # context.strokeStyle = '#2E5794'
+    # context.stroke
+    #
+    # game
+
   end
 
-  def process_json_data(json)
-    alert('Data loaded successfully. Click ok to see the results!')
-
-    json['data']['children'].each do |child|
-      data = child['data']
-      div = Element.parse "
-      <div>
-        <h1>#{data['link_title']}</h1>
-        <p>#{data['body']}</p>
-      </div>
-      "
-      @comments << div
-    end
-
-    render_comments
-  end
-
-  def handle_error(json)
-    alert('handle_error')
-  end
-
-  def hide_spinner!
-    Element['#spinner'].fade_toggle(800)
-  end
-
-  def render_comments
-    @comments.each do |comment|
-      Document.body << comment
-    end
-  end
 end
 
 Document.ready? do
