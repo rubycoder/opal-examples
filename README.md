@@ -20,3 +20,8 @@ Examples with the opal ruby to javascript transpiler.
 5. [Http promises](../../tree/5-http-promises)
 
   Promises are becoming a big thing in the Javascript world, and thankfully they are also a first-class citizen in Opal. The wrapper around jQuery's ajax methods makes good use of them, so that you can easily handle good requests, error conditions, and run code that works no matter what the response. Here's an example
+
+6. [Html5 canvas](../../tree/6-html5-canvas)
+
+  Drawing to the canvas was one of main the reasons I started this series, so here is the first attempt to bring together ruby and the canvas. It's extracted from [work by danxexe](https://github.com/danxexe/opal-canvas-demo)
+  
