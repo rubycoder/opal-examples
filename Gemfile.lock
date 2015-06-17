@@ -1,8 +1,16 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    celluloid (0.16.0)
+      timers (~> 4.0.0)
+    ffi (1.9.8)
     hike (1.2.3)
+    hitimes (1.2.2)
     jquery (0.0.1)
+    listen (2.10.0)
+      celluloid (~> 0.16.0)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
     multi_json (1.11.0)
     opal (0.7.2)
       hike (~> 1.2)
@@ -12,6 +20,11 @@ GEM
     opal-jquery (0.3.0)
       opal (~> 0.7.0)
     rack (1.6.1)
+    rb-fsevent (0.9.5)
+    rb-inotify (0.9.5)
+      ffi (>= 0.5.0)
+    rerun (0.10.0)
+      listen (~> 2.7, >= 2.7.3)
     sourcemap (0.1.1)
     sprockets (2.12.3)
       hike (~> 1.2)
@@ -19,6 +32,8 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     tilt (1.4.1)
+    timers (4.0.1)
+      hitimes
 
 PLATFORMS
   ruby
@@ -27,3 +42,4 @@ DEPENDENCIES
   jquery
   opal
   opal-jquery
+  rerun
