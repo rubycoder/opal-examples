@@ -1,4 +1,5 @@
 # opal-examples
+
 Examples with the opal ruby to javascript transpiler.
 
 1. [Hello World](../../tree/1-hello-world-console)
@@ -8,5 +9,8 @@ Examples with the opal ruby to javascript transpiler.
 5. [Http promises](../../tree/5-http-promises)
 6. [Html5 canvas](../../tree/6-html5-canvas)
 7. [Opal pixi](../../tree/7-opal-pixi-example)
+
+
+Experimental branches just for fun...
 
 * [Creepy Eyes](../../tree/creepy-eyes)
