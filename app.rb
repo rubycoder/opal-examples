@@ -11,7 +11,7 @@ class Person
 end
 
 
-1...10.times do |i|
+10.times do |i|
   c = Person.new do |p|
     p.name = "Person#{i}"
     p.age = i
