@@ -1,2 +1,0 @@
-#!/bin/bash
-rerun -x --background --pattern '*.rb' 'rm app.js;rake build'

@@ -1,18 +1,31 @@
+GIT
+  remote: git://github.com/globalkeith/opal-pixi.git
+  revision: 4dec8ffb4ca3846b7f21aaee622a24a45532c19b
+  specs:
+    opal-pixi (0.0.1)
+      opal (~> 0.6.0)
+
+GIT
+  remote: git://github.com/opal/opal-browser.git
+  revision: 7b9a59fa6436caedf1c4433386a76fd879d095e4
+  specs:
+    opal-browser (0.2.0.beta1)
+      opal
+      paggio
+
 GEM
   remote: https://rubygems.org/
   specs:
     hike (1.2.3)
-    jquery (0.0.1)
-    multi_json (1.11.0)
-    opal (0.7.2)
-      hike (~> 1.2)
-      sourcemap (~> 0.1.0)
-      sprockets (>= 2.2.3, < 3.0.0)
-      tilt (~> 1.4)
-    opal-jquery (0.3.0)
-      opal (~> 0.7.0)
-    rack (1.6.1)
-    sourcemap (0.1.1)
+    json (1.8.3)
+    multi_json (1.11.1)
+    opal (0.6.3)
+      source_map
+      sprockets
+    paggio (0.2.4)
+    rack (1.6.2)
+    source_map (3.0.1)
+      json
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -24,6 +37,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  jquery
-  opal
-  opal-jquery
+  opal-browser!
+  opal-pixi!
+  sprockets (= 2.12.3)
