@@ -15407,7 +15407,7 @@ Opal.modules["opal-jquery"] = function(Opal) {
   Opal.dynamic_require_severity = "error";
   var $a, $b, TMP_2, self = Opal.top, $scope = Opal, nil = Opal.nil, $breaker = Opal.breaker, $slice = Opal.slice, $module = Opal.module, $klass = Opal.klass;
 
-  Opal.add_stubs(['$require', '$on', '$send', '$[]', '$include', '$handle', '$html=', '$current_target', '$ready?', '$new']);
+  Opal.add_stubs(['$require', '$on', '$send', '$[]', '$include', '$handle', '$append', '$remove', '$parent', '$current_target', '$puts', '$ready?', '$new']);
   self.$require("opal");
   self.$require("opal-jquery");
   (function($base) {
@@ -15429,7 +15429,6 @@ if (event == null) event = nil;
 
     var def = self.$$proto, $scope = self.$$scope;
 
-    def.widget_type = nil;
     self.$include($scope.get('EventHandler'));
 
     self.number_entrants = 1;
@@ -15437,15 +15436,22 @@ if (event == null) event = nil;
     def.$initialize = function() {
       var self = this;
 
-      self.widget_type = "div tag";
-      return self.$handle("click", "#clickme", "somemethod");
+      return self.$handle("click", "#add_entrant", "add_entrant");
     };
 
-    return (def.$somemethod = function(event) {
-      var $a, $b, self = this;
+    def.$add_entrant = function(event) {
+      var self = this;
 
-      return (($a = ["Clicked the " + (self.widget_type) + "!"]), $b = event.$current_target(), $b['$html='].apply($b, $a), $a[$a.length-1]);
-    }, nil) && 'somemethod';
+      $scope.get('Element')['$[]'](".input_fields_wrap").$append("<div><input type=\"text\" name=\"mytext[]\"/><a href=\"#\" class=\"remove_field\">Remove</a></div>");
+      return self.$handle("click", ".remove_field", "remove_entrant");
+    };
+
+    return (def.$remove_entrant = function(event) {
+      var self = this;
+
+      event.$current_target().$parent().$remove();
+      return self.$puts(event.$current_target());
+    }, nil) && 'remove_entrant';
   })(self, null);
   return ($a = ($b = $scope.get('Document'))['$ready?'], $a.$$p = (TMP_2 = function(){var self = TMP_2.$$s || this, my_widget = nil;
 

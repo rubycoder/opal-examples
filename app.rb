@@ -13,12 +13,16 @@ class MyWidget
   @number_entrants = 1
 
   def initialize
-    @widget_type = "div tag"
-    handle :click, '#clickme', :somemethod
+    handle :click, '#add_entrant', :add_entrant
   end
 
-  def somemethod(event)
-    event.current_target.html = "Clicked the #{@widget_type}!"
+  def add_entrant(event)
+    Element[".input_fields_wrap"].append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>')
+    handle :click, '.remove_field', :remove_entrant
+  end
+  def remove_entrant(event)
+    event.current_target.parent.remove
+    puts event.current_target
   end
 end
 
