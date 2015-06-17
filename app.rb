@@ -10,42 +10,35 @@ end
 class MyWidget
   include EventHandler
   
-  @number_entrants = 1
 
   def initialize
+    @number_entrants = 1
+    @entrants = []
     handle :click, '#add_entrant', :add_entrant
+    handle :click, '#select_entrant', :select_entrant
   end
 
   def add_entrant(event)
-    Element[".input_fields_wrap"].append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>')
-    handle :click, '.remove_field', :remove_entrant
+    @number_entrants += 1
+    entrant_field = "entrant_" + @number_entrants.to_s
+    Element[".input_fields_wrap"].append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field" id="' + entrant_field + '">Remove</a></div>')
+    handle :click, '#entrant_' + @number_entrants.to_s, :remove_entrant
+    puts "Number of entrants: #{@number_entrants}"
   end
   def remove_entrant(event)
-    event.current_target.parent.remove
-    puts event.current_target
+    entrant_field = "#entrant_" + @number_entrants.to_s
+    Element[entrant_field].parent.remove
+    @number_entrants -= 1
+    puts "Number of entrants: #{@number_entrants}"
+  end
+  def select_entrant(event)
+    Element[".input_fields_wrap"].each do |entrant, input_val|
+      puts input_val
+      @entrants << input_val.value
+    end
   end
 end
 
 Document.ready? do
   my_widget = MyWidget.new
 end
-
-
-# $(document).ready(function() {
-#     var max_fields      = 10; //maximum input boxes allowed
-#     var wrapper         = $(".input_fields_wrap"); //Fields wrapper
-#     var add_button      = $(".add_field_button"); //Add button ID
-#
-#     var x = 1; //initlal text box count
-#     $(add_button).click(function(e){ //on add input button click
-#         e.preventDefault();
-#         if(x < max_fields){ //max input box allowed
-#             x++; //text box increment
-#             $(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
-#         }
-#     });
-#
-#     $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-#         e.preventDefault(); $(this).parent('div').remove(); x--;
-#     })
-# });
