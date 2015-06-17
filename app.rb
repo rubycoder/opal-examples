@@ -1,40 +1,34 @@
 require 'opal'
-require 'opal-jquery'
+require 'opal-pixi'
 require 'native'
 
 class MyWidget
+  include PIXI
 
   def initialize
-
-    # @canvas = Element.find('#myCanvas').get(0)
-    # @ctx  = Native(`this.canvas.getContext('2d')`)
-    # @ctx.fillStyle='red'
-    # @ctx.fillRect(10,10,50,50)
-
-    # game = Document.body #.querySelector('#game')
-    # #
-
-    canvas = Element.createElement(:canvas)
-    document.body.appendChild canvas
-    native_canvas = Native.new(canvas).to_n
-    # native_canvas.width = Document.width
-    # native_canvas.height = Document.height
+    puts "hello"
+    # stage = Stage.new 0x66FF99
+    # renderer = WebGLRenderer.new 400, 300
     #
-    # context = Native.new(canvas.getContext('2d')) #.to_n
-    # context.beginPath
-    # context.arc(200, 200, 70, 0, 2 * `Math.PI`, false)
-    # context.fillStyle = '#65ACC2'
-    # context.fill
-    # context.lineWidth = 6
-    # context.strokeStyle = '#2E5794'
-    # context.stroke
+    # Native(`window.document.body`).appendChild renderer.view
     #
-    # game
-
+    # texture = Texture.from_image "bunny.png"
+    # bunny = Sprite.new texture
+    # bunny.anchor = Point.new(0.5, 0.5)
+    # bunny.position = Point.new(300, 150)
+    #
+    # stage.add_child(bunny)
+    #
+    # animate = proc do
+    #   `requestAnimFrame(animate)`
+    #   bunny.rotation += 0.1
+    #   renderer.render stage
+    # end
+    # `requestAnimFrame(animate)`
   end
 
 end
 
 Document.ready? do
-  my_widget = MyWidget.new
+
 end

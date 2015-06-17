@@ -1,5 +1,4 @@
 require 'opal'
-require 'opal-jquery'
 
 desc "Build our app to app.js"
 task :build do
