@@ -6,16 +6,17 @@ class MyWidget
 
   def initialize
 
-    @canvas = Element.find('#myCanvas').get(0)
-    @ctx  = Native(`this.canvas.getContext('2d')`)
-    @ctx.fillStyle='red'
-    @ctx.fillRect(10,10,50,50)
+    # @canvas = Element.find('#myCanvas').get(0)
+    # @ctx  = Native(`this.canvas.getContext('2d')`)
+    # @ctx.fillStyle='red'
+    # @ctx.fillRect(10,10,50,50)
 
     # game = Document.body #.querySelector('#game')
     # #
-    # canvas = Document.createElement('canvas')
-    # game.appendChild canvas
-    # native_canvas = Native.new(canvas) #.to_n
+
+    canvas = Element.createElement(:canvas)
+    document.body.appendChild canvas
+    native_canvas = Native.new(canvas).to_n
     # native_canvas.width = Document.width
     # native_canvas.height = Document.height
     #
