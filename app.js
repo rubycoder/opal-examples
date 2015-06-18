@@ -15407,9 +15407,10 @@ Opal.modules["opal-jquery"] = function(Opal) {
   Opal.dynamic_require_severity = "error";
   var $a, $b, TMP_3, self = Opal.top, $scope = Opal, nil = Opal.nil, $breaker = Opal.breaker, $slice = Opal.slice, $module = Opal.module, $klass = Opal.klass;
 
-  Opal.add_stubs(['$require', '$on', '$send', '$[]', '$include', '$handle', '$+', '$to_s', '$append', '$puts', '$remove', '$parent', '$-', '$each', '$<<', '$value', '$ready?', '$new']);
+  Opal.add_stubs(['$require', '$on', '$send', '$[]', '$include', '$handle', '$+', '$to_s', '$append', '$puts', '$remove', '$parent', '$-', '$each', '$<<', '$value', '$shuffle', '$effect', '$class_name=', '$text=', '$last', '$ready?', '$new']);
   self.$require("opal");
   self.$require("opal-jquery");
+  self.$require("promise");
   (function($base) {
     var self = $module($base, 'EventHandler');
 
@@ -15429,14 +15430,13 @@ if (event == null) event = nil;
 
     var def = self.$$proto, $scope = self.$$scope;
 
-    def.number_entrants = nil;
+    def.number_entrants = def.entrants = nil;
     self.$include($scope.get('EventHandler'));
 
     def.$initialize = function() {
       var self = this;
 
-      self.number_entrants = 1;
-      self.entrants = [];
+      self.number_entrants = 0;
       self.$handle("click", "#add_entrant", "add_entrant");
       return self.$handle("click", "#select_entrant", "select_entrant");
     };
@@ -15446,7 +15446,7 @@ if (event == null) event = nil;
 
       self.number_entrants = self.number_entrants['$+'](1);
       entrant_field = "entrant_"['$+'](self.number_entrants.$to_s());
-      $scope.get('Element')['$[]'](".input_fields_wrap").$append("<div><input type=\"text\" name=\"mytext[]\"/><a href=\"#\" class=\"remove_field\" id=\""['$+'](entrant_field)['$+']("\">Remove</a></div>"));
+      $scope.get('Element')['$[]'](".input_fields_wrap").$append("<div><input type=\"text\" class=\"entrant\" name=\"entrant[]\"></input><a href=\"#\" class=\"remove_field\" id=\""['$+'](entrant_field)['$+']("\">Remove</a></div>"));
       self.$handle("click", "#entrant_"['$+'](self.number_entrants.$to_s()), "remove_entrant");
       return self.$puts("Number of entrants: " + (self.number_entrants));
     };
@@ -15461,13 +15461,19 @@ if (event == null) event = nil;
     };
 
     return (def.$select_entrant = function(event) {
-      var $a, $b, TMP_2, self = this;
+      var $a, $b, TMP_2, $c, self = this, result = nil, result_html = nil;
 
-      return ($a = ($b = $scope.get('Element')['$[]'](".input_fields_wrap")).$each, $a.$$p = (TMP_2 = function(entrant, input_val){var self = TMP_2.$$s || this;
+      self.entrants = [];
+      ($a = ($b = $scope.get('Element')['$[]'](".entrant")).$each, $a.$$p = (TMP_2 = function(div){var self = TMP_2.$$s || this;
         if (self.entrants == null) self.entrants = nil;
-if (entrant == null) entrant = nil;if (input_val == null) input_val = nil;
-      self.$puts(input_val);
-        return self.entrants['$<<'](input_val.$value());}, TMP_2.$$s = self, TMP_2), $a).call($b);
+if (div == null) div = nil;
+      return self.entrants['$<<'](div.$value())}, TMP_2.$$s = self, TMP_2), $a).call($b);
+      self.$puts(result = self.entrants.$shuffle());
+      result_html = $scope.get('Element')['$[]']("#result");
+      result_html.$effect("fade_out", 0);
+      (($a = ["loser"]), $c = result_html, $c['$class_name='].apply($c, $a), $a[$a.length-1]);
+      (($a = ["The unlucky one is..."['$+'](result.$last().$to_s())]), $c = result_html, $c['$text='].apply($c, $a), $a[$a.length-1]);
+      return result_html.$effect("fade_in", 5000);
     }, nil) && 'select_entrant';
   })(self, null);
   return ($a = ($b = $scope.get('Document'))['$ready?'], $a.$$p = (TMP_3 = function(){var self = TMP_3.$$s || this, my_widget = nil;
