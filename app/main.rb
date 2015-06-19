@@ -1,10 +1,9 @@
-require 'opal'
 require 'opal/pixi'
 require 'native'
 
 class Game
   def initialize
-    stage = PIXI::Stage.new 0x66FF99
+    stage = PIXI::Stage.new 0x1099BB
     renderer = PIXI::WebGLRenderer.new 800, 600
 
     # opal-jquery would clean this up
